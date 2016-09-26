@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Portfolio Webpage with AngularJS and Behance API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <link rel="stylesheet" href="css/reset.css">
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <html class="no-js" lang="" ng-app="myapp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+    </head>
+    <body ng-controller="myController">
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <nav id="navbar" role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Andrei Lepsch Portfolio</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="#home">Home</a></li>
+<!--                 <li><a href="#about">About</a></li> -->
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li class="active"><a href="#contact">Contact <span class="sr-only">(current)</span></a></li>
+                
+              </ul>
+
+             </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        <section id="home">
+          <div class="container">
+            <h1>HOME</h1>
+            <div class="row animated fadeInUp">
+                <div class="col-sm-6 col-md-3">
+                <img ng-src="{{user.images[138]}}" class="img-header img-circle shadow" height="250">
+              </div>
+              <div class="col-sm-6 col-md-9 descricao">
+                <h2>{{user.display_name}}<br><p><a ng-href="{{user.url}}" target="_blank"><i class="icon-map-marker" aria-hidden="true"></i>Behance.net/AndreiLepsch</a></p></h2>
+                <h3>{{user.occupation}}</h3>
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{user.location}}</p>
+                 
+                <div class="status">
+                  <span><i class="fa fa-users" aria-hidden="true"></i>Followers: {{user.stats.followers}}</span> 
+<span><i class="fa fa-thumbs-up" aria-hidden="true"></i>Appreciations: {{user.stats.appreciations}}</span> 
+                  <span><i class="fa fa-eye" aria-hidden="true"></i>Views: {{user.stats.views}}</span> 
+  <span><i class="fa fa-comments" aria-hidden="true"></i>Comments: {{user.stats.comments}}</span>
+                </div>
+                <div class="social-links" ng-repeat="social in user.social_links">
+                <a ng-href="{{social.url}}" ng-class="social.service_name" class="rede-social" target="_blank"><i class="fa " ng-class="{'fa-facebook':social.service_name=='Facebook','fa-linkedin':social.service_name=='LinkedIn'}" aria-hidden="true"></i></a>
+                </div>
+ 
+              </div>
+            </div>
+          </div>  
+        </section>
+<!--         <section id="about"> -->
+
+        <section id="portfolio">
+          <div class="container">
+            <h1>PORTFOLIO</h1>
+            
+            <!--  Portfolio 01  -->
+            <div class="row">
+              <div class="col-sm-4 col-md-3 wow animated fadeInUp" ng-repeat="project in projects">
+                <div class="thumbnail">
+                  <a ng-href="{{project.url}}" target="_blank"><img ng-src="{{project.covers.original}}"  alt="{{project.name}}"></a>
+                  <div class="caption">
+                    <h3>{{project.name}}</h3>
+                    <h4 ng-repeat="fields in project.fields">{{fields}}</h4>
+                    
+                  </div>
+                <div class="footer">
+               
+<span><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{project.stats.appreciations}}</span> 
+                  <span><i class="fa fa-eye" aria-hidden="true"></i> {{project.stats.views}}</span> 
+    
+                </div>
+                </div>
+              </div>
+            </div>
+            <!-- FIM Portfolio 01  -->
+
+          </div>
+        </section>
+        <section id="contact">
+          <div class="container">
+            <h1>CONTACT</h1>
+            <div class="row">
+              <div class="container">
+                <form class="form-horizontal">
+                <div class="col-sm-12 col-md-12">
+                <div class="form-group">  
+                  <input type="text" class="form-control input-lg" placeholder="Name" required>
+                  </div>  
+                <div class="form-group">  
+                  <input type="email" class="form-control input-lg" placeholder="E-mail" required>
+                  </div>  
+                <div class="form-group">  
+                  <input type="text" class="form-control input-lg" placeholder="Subject" required>
+                  </div>  
+                <div class="form-group">  
+                  <textarea class="form-control" rows="8" id="comment"></textarea>
+                </div>
+                 <div class="form-group">  
+                  <button class="btn btn-lg btn-default" type="submit">Send</button>
+                 </div>
+               </div>  
+                </form>
+              </div>
+          </div>
+        </section>
+   </body>
+</html>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>
